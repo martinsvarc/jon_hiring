@@ -80,7 +80,6 @@ export default function ApplyNowPage() {
     socialMedia: "",
     hasNotebook: "",
     canWorkEvenings: "",
-    consent: false, // GDPR consent checkbox
 
     // Hidden tracking fields
     userAgent: "",
@@ -244,7 +243,6 @@ export default function ApplyNowPage() {
           socialMedia: String(storedData?.socialMedia || ""),
           hasNotebook: String(storedData?.hasNotebook || ""),
           canWorkEvenings: String(storedData?.canWorkEvenings || ""),
-          consent: Boolean(storedData?.consent || false),
           userAgent: String(storedData?.userAgent || ""),
           ip: String(storedData?.ip || ""),
           ab_variant: String(storedData?.ab_variant || ""),
@@ -265,7 +263,6 @@ export default function ApplyNowPage() {
               ...mergedFormData,
               fullName: mergedFormData.fullName || `${autoFilledData.firstName || ""} ${autoFilledData.lastName || ""}`.trim(),
               phone: mergedFormData.phone || autoFilledData.phone || "",
-              consent: mergedFormData.consent,
             }
 
             setFormData(enhancedFormData)
@@ -301,7 +298,6 @@ export default function ApplyNowPage() {
           socialMedia: "",
           hasNotebook: "",
           canWorkEvenings: "",
-          consent: false,
           userAgent: "",
           ip: "",
           ab_variant: "",
@@ -356,21 +352,20 @@ export default function ApplyNowPage() {
       localStorage.removeItem("questionnaireData")
       localStorage.removeItem("initialFormData")
 
-      // Reset form state
-      setFormData({
-        fullName: "",
-        age: "",
-        email: "",
-        phone: "",
-        city: "",
-        socialMedia: "",
-        hasNotebook: "",
-        canWorkEvenings: "",
-        consent: false,
-        userAgent: "",
-        ip: "",
-        ab_variant: "",
-      })
+             // Reset form state
+       setFormData({
+         fullName: "",
+         age: "",
+         email: "",
+         phone: "",
+         city: "",
+         socialMedia: "",
+         hasNotebook: "",
+         canWorkEvenings: "",
+         userAgent: "",
+         ip: "",
+         ab_variant: "",
+       })
       setHasError(false)
       setLastError(null)
       setRetryCount((prev) => prev + 1)
@@ -500,19 +495,17 @@ export default function ApplyNowPage() {
         return !!formData.hasNotebook
       case 8: // Can Work Evenings
         return !!formData.canWorkEvenings
-      case 9: // GDPR Consent
-        return formData.consent === true
       default:
         return false
     }
   }
 
-  const nextStep = () => {
-    if (validateCurrentStep()) {
-      setCurrentStep((prev: number) => Math.min(prev + 1, 9))
-        window.scrollTo(0, 0)
-    }
-  }
+     const nextStep = () => {
+     if (validateCurrentStep()) {
+       setCurrentStep((prev: number) => Math.min(prev + 1, 8))
+         window.scrollTo(0, 0)
+     }
+   }
 
   const prevStep = () => {
     setCurrentStep((prev: number) => Math.max(1, prev - 1))
@@ -544,9 +537,8 @@ export default function ApplyNowPage() {
       formDataToSubmit.append("phone", formData.phone)
       formDataToSubmit.append("city", formData.city)
       formDataToSubmit.append("socialMedia", formData.socialMedia)
-      formDataToSubmit.append("hasNotebook", formData.hasNotebook)
-      formDataToSubmit.append("canWorkEvenings", formData.canWorkEvenings)
-      formDataToSubmit.append("consent", formData.consent.toString())
+             formDataToSubmit.append("hasNotebook", formData.hasNotebook)
+       formDataToSubmit.append("canWorkEvenings", formData.canWorkEvenings)
       
       // Add tracking data
       formDataToSubmit.append("userAgent", formData.userAgent || "")
@@ -1163,91 +1155,7 @@ export default function ApplyNowPage() {
                 </div>
               )}
 
-              {/* Step 9: GDPR Consent */}
-              {currentStep === 9 && (
-                <div className="space-y-5 sm:space-y-6 animate-fadeIn">
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#ffde59] mb-4 sm:mb-6 p-3 sm:p-4 border border-[#ffde59]/30 bg-[#ffde59]/10 rounded-lg shadow-inner animate-typewriter">
-                    9️⃣ Consent to Personal Data Processing
-                  </h3>
-                  <p className="text-sm text-[#ffde59]/80 mb-4">
-                    To complete the application, it is necessary to consent to the processing of personal data.
-                  </p>
 
-                  <div className="space-y-4">
-                    <div className="flex items-start space-x-3 p-4 bg-[rgb(var(--charcoal))] border border-[rgb(var(--velvet-gray))] rounded-lg">
-                      <input
-                        type="checkbox"
-                        id="consent"
-                        name="consent"
-                        checked={formData.consent}
-                        onChange={(e) => setFormData(prev => ({ ...prev, consent: e.target.checked }))}
-                        className="mt-1 w-4 h-4 text-[#ffde59] bg-[rgb(var(--charcoal))] border-[rgb(var(--velvet-gray))] rounded focus:ring-[#ffde59] focus:ring-2"
-                        required
-                      />
-                      <label htmlFor="consent" className="text-sm text-white leading-relaxed">
-                        I consent to the processing of personal data according to{" "}
-                        <a 
-                          href="/privacy-policy" 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-[#ffde59] hover:underline"
-                        >
-                          privacy policy
-                        </a>
-                        . I understand that my data will be used only for recruitment purposes and will be stored in accordance with GDPR.
-                      </label>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row justify-between gap-3 sm:gap-0 mt-6 sm:mt-8">
-                    <Button
-                      type="button"
-                      onClick={prevStep}
-                      className="w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-2.5 bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-lg transition-all duration-300 text-base"
-                    >
-                      Back
-                    </Button>
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting || isProcessing || !validateCurrentStep()}
-                      className="w-full sm:w-auto px-5 py-2.5 sm:px-6 sm:py-2.5 bg-gradient-to-r from-[#ffde59] to-[#ffd700] hover:from-[#ffed4e] hover:to-[#ffed4e] text-white rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-base relative"
-                    >
-                      {isProcessing ? (
-                        <>
-                          <span className="flex items-center">
-                            <svg 
-                              className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" 
-                              xmlns="http://www.w3.org/2000/svg" 
-                              fill="none" 
-                              viewBox="0 0 24 24"
-                            >
-                              <circle 
-                                className="opacity-25" 
-                                cx="12" 
-                                cy="12" 
-                                r="10" 
-                                stroke="currentColor" 
-                                strokeWidth="4"
-                              ></circle>
-                              <path 
-                                className="opacity-75" 
-                                fill="currentColor" 
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                              ></path>
-                            </svg>
-                            Submitting...
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          Submit
-                          <ChevronRight className="ml-2 h-4 w-4" />
-                        </>
-                      )}
-                    </Button>
-                  </div>
-                </div>
-              )}
             </form>
           </div>
         </div>
