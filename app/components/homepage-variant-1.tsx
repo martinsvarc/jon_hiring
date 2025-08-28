@@ -41,7 +41,7 @@ export default function HomePageVariant1() {
       script.onload = () => {
         // Load the specific video embed script
         const embedScript = document.createElement('script')
-        embedScript.src = 'https://fast.wistia.com/embed/a17g5esmgo.js'
+        embedScript.src = 'https://fast.wistia.com/embed/48psqs06ja.js'
         embedScript.async = true
         embedScript.type = 'module'
         embedScript.onload = () => {
@@ -87,16 +87,16 @@ export default function HomePageVariant1() {
               thumbnailUrl: "https://solarbossautomations.com/video-thumbnail.jpg",
               uploadDate: "2025-01-01",
               duration: "PT15M",
-              contentUrl: "https://fast.wistia.net/embed/iframe/a17g5esmgo",
-              embedUrl: "https://fast.wistia.net/embed/iframe/a17g5esmgo",
+              contentUrl: "https://fast.wistia.net/embed/iframe/48psqs06ja",
+              embedUrl: "https://fast.wistia.net/embed/iframe/48psqs06ja",
             }),
           }}
         />
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              wistia-player[media-id='a17g5esmgo']:not(:defined) {
-                background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/a17g5esmgo/swatch');
+              wistia-player[media-id='48psqs06ja']:not(:defined) {
+                background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/48psqs06ja/swatch');
                 display: block;
                 filter: blur(5px);
                 padding-top:56.25%;
@@ -172,11 +172,11 @@ export default function HomePageVariant1() {
                       }}
                     >
                       {wistiaLoaded ? (
-                        <wistia-player media-id="a17g5esmgo" aspect="1.7777777777777777"></wistia-player>
+                        <wistia-player media-id="48psqs06ja" aspect="1.7777777777777777"></wistia-player>
                       ) : (
                         <div 
                           style={{
-                            background: "center / contain no-repeat url('https://fast.wistia.com/embed/medias/a17g5esmgo/swatch')",
+                            background: "center / contain no-repeat url('https://fast.wistia.com/embed/medias/48psqs06ja/swatch')",
                             display: "block",
                             filter: "blur(5px)",
                             paddingTop: "56.25%",

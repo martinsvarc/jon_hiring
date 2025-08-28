@@ -117,14 +117,14 @@ export default function ApplyNowPage() {
 
     // Load Wistia embed script
     const embedScript = document.createElement('script')
-    embedScript.src = 'https://fast.wistia.com/embed/10qc7ohpni.js'
+    embedScript.src = 'https://fast.wistia.com/embed/48psqs06ja.js'
     embedScript.async = true
     embedScript.type = 'module'
     document.head.appendChild(embedScript)
 
     // Add Wistia styles
     const wistiaStyle = document.createElement('style')
-    wistiaStyle.textContent = `wistia-player[media-id='10qc7ohpni']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/10qc7ohpni/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }`
+    wistiaStyle.textContent = `wistia-player[media-id='48psqs06ja']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/48psqs06ja/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }`
     document.head.appendChild(wistiaStyle)
 
     return () => {
@@ -741,7 +741,7 @@ export default function ApplyNowPage() {
                     <div className="bg-black/20 p-4 rounded-lg border border-[#ffde59]/30">
                       <div 
                         dangerouslySetInnerHTML={{
-                          __html: '<wistia-player media-id="10qc7ohpni" aspect="1.7777777777777777" style="width: 100%; height: auto; min-height: 200px;"></wistia-player>'
+                          __html: '<wistia-player media-id="48psqs06ja" aspect="1.7777777777777777" style="width: 100%; height: auto; min-height: 200px;"></wistia-player>'
                         }}
                       />
                     </div>
