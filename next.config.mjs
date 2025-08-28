@@ -9,9 +9,11 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  output: 'export',
+  // Remove static export for client-side routing to work
+  // output: 'export',
   trailingSlash: true,
-  basePath: process.env.NODE_ENV === 'production' ? '/jon-carreer' : '',
+  // Remove basePath for now - add it back if needed for your deployment
+  // basePath: process.env.NODE_ENV === 'production' ? '/jon-carreer' : '',
 }
 
 export default nextConfig

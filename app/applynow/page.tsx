@@ -5,21 +5,21 @@ import { useState, useEffect, useRef } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useToast } from "@/hooks/use-toast"
 import Head from "next/head"
-import { useUTMTracking } from "../hooks/use-utm-tracking"
-import { FormHealthMonitor } from "../components/form-health-monitor"
-import { trackApplicationCompletion } from "../utils/track-application-completion"
-import ApplicationExitTracker from "../components/application-exit-tracker"
-import { autoFillUserData, storeUserData } from "../utils/auto-fill-user-data"
+import { useUTMTracking } from "@/app/hooks/use-utm-tracking"
+import { FormHealthMonitor } from "@/app/components/form-health-monitor"
+import { trackApplicationCompletion } from "@/app/utils/track-application-completion"
+import ApplicationExitTracker from "@/app/components/application-exit-tracker"
+import { autoFillUserData, storeUserData } from "@/app/utils/auto-fill-user-data"
 import { ChevronRight, Upload, FileVideo } from "lucide-react"
-import UrgencyBanner from "../components/urgency-banner"
-import Footer from "../components/footer"
+import UrgencyBanner from "@/app/components/urgency-banner"
+import Footer from "@/app/components/footer"
 // Import the tracking functions
 import {
   trackContinueClick,
   trackFormSubmission,
   resetQuestionTimer,
   startFormTracking,
-} from "../utils/form-interaction-tracker"
+} from "@/app/utils/form-interaction-tracker"
 
 // Define the webhook URL
 const WEBHOOK_URL = "https://n8n.automatedsolarbiz.com/webhook/d661e7e4-0408-4921-b6db-1ed1e37b4ed9"

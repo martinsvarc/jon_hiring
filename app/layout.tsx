@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import "./globals.css"
 import localFont from "next/font/local"
 import HotjarScript from "./components/hotjar-script"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
 
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
@@ -165,10 +167,17 @@ export default function RootLayout({
       <body
         className={`min-w-[320px] w-full overflow-x-hidden ${systemSans.variable} ${systemSerif.variable} ${balboa.variable}`}
       >
-        <Suspense fallback={null}>{children}</Suspense>
-        <Analytics />
-        <SpeedInsights />
-
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Suspense fallback={null}>{children}</Suspense>
+          <Toaster />
+          <Analytics />
+          <SpeedInsights />
+        </ThemeProvider>
       </body>
     </html>
   )

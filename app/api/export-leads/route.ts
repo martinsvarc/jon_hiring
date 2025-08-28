@@ -3,18 +3,8 @@ import { NextResponse } from "next/server"
 export async function GET() {
   try {
     // Get leads from in-memory storage (in a real app, this would be from a database)
-    // For this example, we'll import from the submit-lead route
-    const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/submit-lead`, {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    })
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch leads")
-    }
-
-    const data = await response.json()
-    const leads = data.leads || []
+    // For this example, we'll return empty data since we don't have a proper database setup
+    const leads: any[] = []
 
     // Convert leads to CSV
     const headers = ["Name", "Email", "Phone", "Timestamp"]
